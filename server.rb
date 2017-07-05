@@ -7,9 +7,8 @@ enable :sessions
 require './models'
 
 get '/' do
-  "Welcome"
-  erb :home
   @users = User.all
+  erb :home
 end
 
 get '/layout' do
@@ -33,6 +32,7 @@ post '/login' do
    redirect '/'
  else
     flash[:alert] = "That combination doesn't work, try again"
+    redirect '/login'
   end
 
 end
