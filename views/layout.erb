@@ -5,10 +5,17 @@
 	<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Bellefair|Cinzel|Courgette|Gudea|Permanent+Marker|Poiret+One|Quicksand|Raleway" rel="stylesheet">
 	<link rel="stylesheet" href="css/default.css" type="text/css">
 <title>Switch</title>
-<h1>Sign in</h1>
 
   </head>
   <body>
+    <div class= "container">
+        <a href="/login">Login</a>
+        <a href="/">Home</a>
+        <a href="/profile">My Profile</a>
+        <a href="/logout">Log Out</a>
+    </div>
+    <%= flash[:message] if flash[:message] %>
     <%= yield %>
+  <script src="js/main.js">
   </body>
 </html>
