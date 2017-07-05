@@ -3,8 +3,8 @@
   <head>
    		<meta charset="utf-8">
 		<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Bellefair|Cinzel|Courgette|Gudea|Permanent+Marker|Poiret+One|Quicksand|Raleway" rel="stylesheet">
-		<link rel="stylesheet" href="css/default.css" type="text/css">
-		<link rel="shortcut icon" src="public/images/switch.ico"/>
+		<link rel="stylesheet" href="/css/default.css" type="text/css">
+		<link rel="shortcut icon" src="/images/switch.ico"/>
 	<title>Switch</title>
 	<div id="signin">
 		<span><h1>Sign in</h1></span>
@@ -12,7 +12,7 @@
   </head>
   <body>
   	<div class="cover">
-  		<img id="herofight" src="public/images/herofight1.jpg">
+  		<img id="herofight" src="/images/herofight1.jpg">
   	</div>
   	<div class= "container">
         <a href="/login">Login</a> 
@@ -23,8 +23,8 @@
     <%= flash[:message] if flash[:message] %>
     <%= yield %>
     <div class="backgroundimg">
-    	<img id="redsunburst" src="public/images/RedSunburst.png">
+    	<img id="redsunburst" src="/images/RedSunburst.png">
     </div>
-  <script src="js/main.js"> </script>
+  <script src="/js/main.js"> </script>
   </body>
 </html>
