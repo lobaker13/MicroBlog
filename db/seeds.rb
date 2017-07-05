@@ -32,8 +32,6 @@ User.create ([
   # {id: 12, first_name: "Clark", last_name: "Kent", email: "Do_you_even_lift@DC.com", username: "  " password: "kryptonite_sucks", power_id:}
   ])
 
-
-
 Post.create ([
   {id: 1, user_id: 1, title: "Morals", body: "Always keep your priorities straight and do the right thing"},
   {id: 2, user_id: 2, title: "Exams", body: "Finals can be such a Loki.....am I right?.."},
