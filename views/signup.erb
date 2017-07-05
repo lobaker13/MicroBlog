@@ -1,9 +1,27 @@
-<h1>Sign up and sell your soul here!</h1>
+<h3>Sign up and sell your soul here!</h3>
 
 <form method= "POST" action="/signup">
-  <label for= "username">Username</label>
-  <input type= "text" name="username">
-  <label for= "password">Password</label>
-  <input type= "text" name="password">
-  <input type="submit">
+  <label for= "first_name">First Name</label>
+  <input type= "text" name="first_name">
+</br>
+  <label for= "last_name">Last Name</label>
+  <input type= "text" name="last_name">
+</br>
+  <label for= "email">Email</label>
+  <input type= "text" name="email">
+</br>
+  <label for= "n_username">Username</label>
+  <input type= "text" name="n_username">
+</br>
+  <label for= "n_password">Password</label>
+  <input type= "text" name="n_password">
+</br>
+<select name="power">
+  <option value="" selected>Please choose power</option>
+<% @powers.each do |power| %>
+  <option value="<%= power.id %>"><%= power.description %></option>
+  <% end %>
+</select>
+</br>
+<input type="submit">
 </form>

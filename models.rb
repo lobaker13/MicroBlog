@@ -4,13 +4,15 @@ end
 
 class Power < ActiveRecord::Base
   has_many :users
-end 
+end
 
 class User < ActiveRecord::Base
   has_many :posts
   has_many :comments
-end
-
+  def full_name
+    "#{first_name} #{last_name}".strip
+  end
+end 
 
 class Post <ActiveRecord::Base
   belongs_to :user
