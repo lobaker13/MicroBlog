@@ -6,22 +6,29 @@ set :database, {adapter:"sqlite3", database: "db/super.db" }
 enable :sessions
 require './models'
 
+before do
+    @powers = Power.all
+    @current_user = session[:user_id] ? User.find(session[:user_id]) : nil
+  end
+
 get '/' do
   @users = User.all
+  @posts = Post.order( :id => :desc).limit(5)
   erb :home
-end
-
-get '/layout' do
-  erb :layout
-end
+ end
 
 get '/user/:id' do
-    @user = User.find(params[:id])
+    @user = User.find_by(params[:id])
     erb :profile
   end
 
 get '/login' do
   erb :login
+end
+
+get '/signup' do
+  #@power = Power.find_by(id: params[:id])
+  erb :signup
 end
 
 post '/login' do
@@ -32,7 +39,7 @@ post '/login' do
    redirect '/'
  else
     flash[:alert] = "That combination doesn't work, try again"
-    redirect '/login'
+    redirect '/signup'
   end
 
 end
