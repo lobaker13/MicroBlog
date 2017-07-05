@@ -31,7 +31,11 @@ ActiveRecord::Schema.define(version: 20170702191152) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
-  create_table "universe", force: :cascade do |t|
+  create_table "powers", force: :cascade do |t|
+    t.string "description"
+  end
+
+  create_table "universes", force: :cascade do |t|
     t.string "name"
     t.string "image"
   end
@@ -42,10 +46,11 @@ ActiveRecord::Schema.define(version: 20170702191152) do
     t.string "email"
     t.string "username"
     t.string "password"
-    t.string "super_power"
+    t.integer "power_id"
     t.integer "universe_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["power_id"], name: "index_users_on_power_id"
     t.index ["universe_id"], name: "index_users_on_universe_id"
   end
 
