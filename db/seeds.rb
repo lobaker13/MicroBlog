@@ -3,6 +3,20 @@ Universe.create [(
   {id: 2, name: "DC", image: '/images/DC.jpg'},
   )]
 
+  Power.create [(
+
+    {id: 1, description: "Strength"},
+    {id: 2, description: "Speed"},
+    {id: 3, description: "Flight"},
+    {id: 4, description: "Reflexes"},
+    {id: 5, description: "Regeneration"},
+    {id: 6, description: "Invisibility"},
+    {id: 7, description: "Telepathy"},
+    {id: 8, description: "Telekinesis"},
+    {id: 9, description: "Botany"},
+    {id: 10, description: "Financial Security"},
+    )]
+
 User.create [(
   {id: 1, first_name: "Captain", last_name: "America", email: "Captain_america@marvel.com", username: "captain" password: "throw_my_shield", power_id: 4, universe_id: 1}
   {id: 2, first_name: "Peter ", last_name: "Parker", email: "Web_slinger@marvel.com", username: "spiderman" password: "aunt_may", power_id: 4 , universe_id: 1}
@@ -18,19 +32,7 @@ User.create [(
   # {id: 12, first_name: "Clark", last_name: "Kent", email: "Do_you_even_lift@DC.com", username: "  " password: "kryptonite_sucks", power_id:}
   )]
 
-Super.create [(
 
-  {id: 1, description: "Strength"},
-  {id: 2, description: "Speed"},
-  {id: 3, description: "Flight"},
-  {id: 4, description: "Reflexes"},
-  {id: 5, description: "Regeneration"},
-  {id: 6, description: "Invisibility"},
-  {id: 7, description: "Telepathy"},
-  {id: 8, description: "Telekinesis"},
-  {id: 9, description: "Botany"},
-  {id: 10, description: "Financial Security"},
-  )]
 
 Post.create [(
   {id: 1, user_id: 1, title: "Morals", body: "Always keep your priorities straight and do the right thing"}
@@ -40,5 +42,5 @@ Post.create [(
   )]
 
 Comment.create [(
-  {id: 1, user_id: 2, body: "What a lame post, Captain..."}
+  {id: 1, post_id: 1, user_id: 2, body: "What a lame post, Captain..."}
   )]

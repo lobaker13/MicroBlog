@@ -2,6 +2,10 @@ class Universe < ActiveRecord::Base
   has_many :users
 end
 
+class Power < ActiveRecord::Base
+  has_many :users
+end 
+
 class User < ActiveRecord::Base
   has_many :posts
   has_many :comments
