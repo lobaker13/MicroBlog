@@ -44,3 +44,4 @@ Post.create ([
 Comment.create ([
   {id: 1, post_id: 1, user_id: 2, body: "What a lame post, Captain..."},
 ])
+
