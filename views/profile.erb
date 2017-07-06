@@ -16,6 +16,7 @@
     <tr>
       <td>Super Power</td>
       <td><input name="power" value="<%= @power['description'] %>" ></td>
+      <td><input name="power" value="<%= @current_user.power['description'] %>" ></td>
     <tr>
 			<td>Email</td>
 			<td><input name="email" disabled="true" value="<%= @current_user.email %>"></td>
