@@ -1,7 +1,10 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'sinatra/flash'
-set :database, {adapter:"sqlite3", database: "db/super.db" }
+
+configure :development, :test do
+  set :database, {adapter:"sqlite3", database: "db/super.db" }
+end
 #models.rb needs a database, place after db is defined
 enable :sessions
 require './models'
@@ -81,7 +84,7 @@ get'/post/:id/delete' do
 end
 
 get '/profile' do
-    #if !@current_user
+
     unless @current_user
       flash[:message] = "Sign in to access your profile!"
       redirect '/login'
