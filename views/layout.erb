@@ -2,29 +2,24 @@
 <html>
   <head>
    		<meta charset="utf-8">
-		<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Bellefair|Cinzel|Courgette|Gudea|Permanent+Marker|Poiret+One|Quicksand|Raleway" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Bellefair|Cinzel|Courgette|Gudea|Permanent+Marker|Poiret+One|Quicksand|Raleway|Oswald" rel="stylesheet">
 		<link rel="stylesheet" href="/css/default.css" type="text/css">
 		<link rel="shortcut icon" src="/images/switch.ico"/>
 	<title>Switch</title>
-	<div id="signin">
-		<span><h1>Sign in</h1></span>
-	</div>
   </head>
   <body>
-  	<div class="cover">
-  		<img id="herofight" src="/images/herofight1.jpg">
-  	</div>
-  	<div class= "container">
+    <div class= "container">
         <a href="/login">Login</a> 
         <a href="/">Home</a>
         <a href="/profile">My Profile</a>
         <a href="/logout">Log Out</a>
     </div>
+    <img id="herofight" src="/images/herofight5.png">
     <%= flash[:message] if flash[:message] %>
     <%= yield %>
-    <div class="backgroundimg">
+<!--     <div class="backgroundimg">
     	<img id="redsunburst" src="/images/RedSunburst.png">
-    </div>
+    </div> -->
   <script src="/js/main.js"> </script>
   </body>
 </html>
