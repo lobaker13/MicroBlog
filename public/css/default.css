@@ -18,10 +18,11 @@ h4 {
 	font-family: "Permanent Marker";
 	font-size: 16px;
 }
+
 body {
 	margin: auto;
 	font-family: "Permanent Marker";
-	text-decoration-color: white;
+	color: #FDF5E6;
 	background-image: url(/images/RedSunburst.png);
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -35,12 +36,15 @@ body {
 	width: 99%;
 	text-align: right;
 	/*float: right;*/
-	padding-top: 10px;
+/*	padding-top: 10px;
 	padding-right: 20px;
 	margin-right: 40px;
 	font-family: "Permanent Marker";
 	text-decoration-color: white;
-	font-size: 20px;*/
+	font-size: 20px;*//*/*/
+div.container a{
+	float: right;
+}
 
 div.container a{
     font-family: "Permanent Marker";
@@ -110,6 +114,7 @@ form {
 #login {
 	margin: 0 auto;
 	text-align: center;
+	text-decoration-color: white;
 	width: 80%;
 	height: 20vh;
 }
