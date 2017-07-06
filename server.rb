@@ -81,9 +81,13 @@ get'/post/:id/delete' do
 end
 
 get '/profile' do
-    @power = Power.find(@current_user.power_id)
-    pp @power
-    erb :profile
+    #if !@current_user
+    unless @current_user
+      flash[:message] = "Sign in to access your profile!"
+      redirect '/login'
+    end
+      flash[:message] = "Welcome, #{@current_user.first_name}!"
+      erb :profile
 end
 
 get '/:username' do
@@ -123,8 +127,6 @@ end
         @user.save
         redirect '/'
       end
-
-
   end
 
 
@@ -132,3 +134,5 @@ get '/post/:id' do
    @post = Post.find( params[:id] )
     erb :post
 end
+
+
