@@ -5,6 +5,7 @@ set :database, {adapter:"sqlite3", database: "db/super.db" }
 #models.rb needs a database, place after db is defined
 enable :sessions
 require './models'
+require 'pp'
 
 #To be accessed
 before do
@@ -14,17 +15,22 @@ end
 
 get '/' do
   @users = User.all
-  @posts = Post.order( :id => :desc).limit(5)
+  @posts = Post.order( :id => :desc).limit(10)
   erb :home
 end
 
 get '/user/:id' do
-  @user = User.find_by(params[:id])
-  erb :profile
+  @user = User.find(params[:id])
+  erb :user
 end
 
 get '/signup' do
   erb :signup
+end
+
+get '/logout' do
+  session[:user_id] = nil
+  redirect '/'
 end
 
 get '/login' do
@@ -50,32 +56,78 @@ end
 
 post '/write' do
   @post = Post.new( title: params[:title],
-            body: params[:body],
-            user_id: @current_user.id )
+                    body: params[:body],
+                    user_id: @current_user.id )
   if @post.save
-    flash[:message] = "Got your post!  Nice work!"
+    flash[:message] = "Post saved"
     redirect '/profile'
   else
-    flash[:message] = "Unable to save your post :'("
+    flash[:message] = "Error: Post not saved"
     redirect '/write'
   end
 end
 
+get'/post/:id/delete' do
+  @post = Post.find(params[:id])
+  if @post.user_id != @current_user.id
+    redirect '/'
+  elsif @post.destroy
+    flash[:message] = "Deleted"
+    redirect '/'
+  else
+    flash[:message] = "Could Delete"
+  end
+end
+
 get '/profile' do
+    @power = Power.find(@current_user.power_id)
+    pp @power
     erb :profile
 end
 
-get '/logout' do
-  erb :logout
+get '/:username' do
+  @user = User.find_by(username:params[:username])
+    erb :user
+  end
+
+get '/:id/destroy' do
+  @user = User.find(params[:id])
+  if @user.destroy
+    flash[:message] = "Profile deleted"
+    session[:user_id] = nil
+    redirect '/'
+  else
+    flash[:message] = "Couldn't do it"
+    redirect '/profile'
+  end
 end
 
+
+
  post '/signup' do
-  if params[:power] == nil
-    flash[:message] = "Super Power required to make account"
-  elsif User.find_by( username: params[:n_username] )
-    flash[:message] = "Username already taken"
-    redirect '/signup'
-  else
-    redirect '/'
-   end
+   @power = Power.find(params["power"])
+   pp @power
+  @user = User.new( first_name: params[:first_name],
+      last_name:params[:last_name],
+      email: params[:email],
+      username: params[:n_username],
+      password: params[:n_password],
+      power_id: params[:power])
+
+
+    if User.find_by( username: params[:n_username] )
+      flash[:message] = "Username already taken"
+      redirect '/signup'
+      else
+        @user.save
+        redirect '/'
+      end
+
+
   end
+
+
+get '/post/:id' do
+   @post = Post.find( params[:id] )
+    erb :post
+end

@@ -1,1 +1,32 @@
-<h1>Profile Page</h1>
+  <h2>Your Account information</h2>
+	<form method="post">
+	<table>
+		<tr>
+			<th></th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>First Name</td>
+			<td><input name="first_name" value="<%= @current_user.first_name %>" ></td>
+		</tr>
+		<tr>
+			<td>Last Name</td>
+			<td><input name="last_name" value="<%= @current_user.last_name %>" ></td>
+		</tr>
+    <tr>
+      <td>Super Power</td>
+      <td><input name="power" value="<%= @power['description'] %>" ></td>
+      <tr>
+			<td>Email</td>
+			<td><input name="email" disabled="true" value="<%= @current_user.email %>"></td>
+		</tr>
+		<tr>
+			<td>Current Password</td>
+			<td><input type="password" name="password"></td>
+		</tr>
+    <tr>
+			<td colspan="2"><input type="submit" value="Update Profile"></td>
+		</tr>
+	</table>
+  <a href="/<%= @current_user.id %>/destroy">Delete</a>
+  </form>
