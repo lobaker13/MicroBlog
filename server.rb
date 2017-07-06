@@ -30,6 +30,7 @@ end
 
 get '/logout' do
   session[:user_id] = nil
+  flash[:message] = "You signed out successfully"
   redirect '/'
 end
 

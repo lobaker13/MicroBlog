@@ -2,6 +2,8 @@ h1 {
 	font-family:"Permanent Marker";
 	font-size: 50px;
 	text-decoration-color: white;
+	text-align: center;
+	text-decoration: underline;
 }
 
 h2 {
@@ -30,18 +32,7 @@ body {
 	height: 100%;
 }
 
-/*.container {
-	display: inline-block;
-	top: 0;
-	width: 99%;
-	text-align: right;
-	/*float: right;*/
-/*	padding-top: 10px;
-	padding-right: 20px;
-	margin-right: 40px;
-	font-family: "Permanent Marker";
-	text-decoration-color: white;
-	font-size: 20px;*//*/*/
+
 div.container a{
 	float: right;
 }
@@ -123,6 +114,6 @@ form {
 	width: 60%;
 	margin: 0 auto;
 /*	margin-top: 280px;*/
-/*	padding-left: 120px;*/ 
+/*	padding-left: 120px;*/
 	background-color: rgba(255, 0, 30, 0.7);
 }
