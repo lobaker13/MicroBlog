@@ -28,6 +28,11 @@ get '/signup' do
   erb :signup
 end
 
+get '/logout' do
+  session[:user_id] = nil
+  redirect '/'
+end
+
 get '/login' do
   erb :login
 end
@@ -62,15 +67,42 @@ post '/write' do
   end
 end
 
+get'/post/:id/delete' do
+  @post = Post.find(params[:id])
+  if @post.user_id != @current_user.id
+    redirect '/'
+  elsif @post.destroy
+    flash[:message] = "Deleted"
+    redirect '/'
+  else
+    flash[:message] = "Could Delete"
+  end
+end
+
 get '/profile' do
     @power = Power.find(@current_user.power_id)
     pp @power
     erb :profile
 end
 
-get '/logout' do
-  erb :logout
+get '/:username' do
+  @user = User.find_by(username:params[:username])
+    erb :user
+  end
+
+get '/:id/destroy' do
+  @user = User.find(params[:id])
+  if @user.destroy
+    flash[:message] = "Profile deleted"
+    session[:user_id] = nil
+    redirect '/'
+  else
+    flash[:message] = "Couldn't do it"
+    redirect '/profile'
+  end
 end
+
+
 
  post '/signup' do
    @power = Power.find(params["power"])
