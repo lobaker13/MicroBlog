@@ -10,13 +10,15 @@
   <body>
     <div class= "container">
         <a href="/signup">Sign Up</a>
-        <a href="/login">Login</a> 
+        <a href="/login">Login</a>
         <a href="/">Home</a>
         <a href="/profile">My Profile</a>
         <a href="/logout">Log Out</a>
     </div>
     <img id="herofight" src="/images/herofight5.png">
-    <%= flash[:message] if flash[:message] %>
+    <% if flash[:message] %>
+  <div class="message"><%= flash[:message] %></div>
+<% end %>
     <%= yield %>
   <script src="/js/main.js"> </script>
   </body>

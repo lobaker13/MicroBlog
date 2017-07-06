@@ -36,6 +36,13 @@ form{
 	width:20%;
 	margin: auto;
 }
+/* Edit the Flash messages */
+div.message{
+	width:20%;
+	margin:auto;
+	font-size: 30px;
+	color:#0027f5
+}
 
 div.container a{
 	float: right;
@@ -87,24 +94,11 @@ div.container a:hover:before, div.container a:hover:after
     height: 2px;
     width: 100%;
 }
-/*	margin: 0;*/
-}
 
 img {
 	margin-top: 0;
 }
 
-/*h2 {
-	padding-left: 120px;
-	font-size: 30px;
-}*/
-/*
-form {
-	width: 80%;
-	font-size: 20px;
-	margin: auto;
-	text-align: center;
-}*/
 
 #login {
 	margin: 0 auto;
