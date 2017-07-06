@@ -32,6 +32,10 @@ body {
 	height: 100%;
 }
 
+form{
+	width:20%;
+	margin: auto;
+}
 
 div.container a{
 	float: right;
