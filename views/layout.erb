@@ -3,7 +3,7 @@
   <head>
    		<meta charset="utf-8">
 		<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Bellefair|Cinzel|Courgette|Gudea|Permanent+Marker|Poiret+One|Quicksand|Raleway" rel="stylesheet">
-		<link rel="stylesheet" href="/css/default.css" type="text/css">
+		<link rel="stylesheet" href="css/default.css" type="text/css">
 		<link rel="shortcut icon" src="/images/switch.ico"/>
 	<title>Switch</title>
 	<div id="signin">
@@ -11,20 +11,21 @@
 	</div>
   </head>
   <body>
-  	<div class="cover">
+  	<!-- <div class="cover">
   		<img id="herofight" src="/images/herofight1.jpg">
-  	</div>
+  	</div> -->
   	<div class= "container">
-        <a href="/login">Login</a> 
+        <a href="/signup">Sign Up</a>
+        <a href="/login">Login</a>
         <a href="/">Home</a>
         <a href="/profile">My Profile</a>
         <a href="/logout">Log Out</a>
     </div>
     <%= flash[:message] if flash[:message] %>
     <%= yield %>
-    <div class="backgroundimg">
+    <!-- <div class="backgroundimg">
     	<img id="redsunburst" src="/images/RedSunburst.png">
-    </div>
+    </div> -->
   <script src="/js/main.js"> </script>
   </body>
 </html>

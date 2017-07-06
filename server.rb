@@ -5,6 +5,7 @@ set :database, {adapter:"sqlite3", database: "db/super.db" }
 #models.rb needs a database, place after db is defined
 enable :sessions
 require './models'
+require 'pp'
 
 #To be accessed
 before do
@@ -14,13 +15,13 @@ end
 
 get '/' do
   @users = User.all
-  @posts = Post.order( :id => :desc).limit(5)
+  @posts = Post.order( :id => :desc).limit(10)
   erb :home
 end
 
 get '/user/:id' do
-  @user = User.find_by(params[:id])
-  erb :profile
+  @user = User.find(params[:id])
+  erb :user
 end
 
 get '/signup' do
@@ -50,18 +51,20 @@ end
 
 post '/write' do
   @post = Post.new( title: params[:title],
-            body: params[:body],
-            user_id: @current_user.id )
+                    body: params[:body],
+                    user_id: @current_user.id )
   if @post.save
-    flash[:message] = "Got your post!  Nice work!"
+    flash[:message] = "Post saved"
     redirect '/profile'
   else
-    flash[:message] = "Unable to save your post :'("
+    flash[:message] = "Error: Post not saved"
     redirect '/write'
   end
 end
 
 get '/profile' do
+    @power = Power.find(@current_user.power_id)
+    pp @power
     erb :profile
 end
 
@@ -77,5 +80,9 @@ end
     redirect '/signup'
   else
     redirect '/'
-   end
   end
+end
+get '/post/:id' do
+   @post = Post.find( params[:id] )
+    erb :post
+end
