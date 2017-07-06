@@ -115,3 +115,10 @@ img {
 /*	padding-left: 120px;*/
 	background-color: rgba(255, 0, 30, 0.7);
 }
+
+.linkbutton {
+	display: inline-block;
+	padding: 20px;
+	text-align: center;
+	margin: 0 auto;
+}
