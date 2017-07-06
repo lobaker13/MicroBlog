@@ -9,6 +9,7 @@ end
 class User < ActiveRecord::Base
   has_many :posts
   has_many :comments
+  belongs_to :power
   def full_name
     "#{first_name} #{last_name}".strip
   end
