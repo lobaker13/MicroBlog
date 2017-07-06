@@ -1,7 +1,10 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'sinatra/flash'
-set :database, {adapter:"sqlite3", database: "db/super.db" }
+require 'sqlite3'
+configure :development, :test do
+  set :database, {adapter:"sqlite3", database: "db/super.db" }
+end
 #models.rb needs a database, place after db is defined
 enable :sessions
 require './models'
@@ -81,6 +84,7 @@ get'/post/:id/delete' do
 end
 
 get '/profile' do
+
     unless @current_user
       flash[:message] = "Sign in to access your profile!"
       redirect '/login'
@@ -96,7 +100,13 @@ get '/:username' do
 
 get '/:id/destroy' do
   @user = User.find(params[:id])
-  if @user.destroy
+  User.transaction do
+    @user.posts.each{ |post| post.comments.destroy_all }
+    @user.posts.destroy_all
+    @user.comments.destroy_all
+    @user.destroy
+  end
+  if User.where( id: @user.id).empty?
     flash[:message] = "Profile deleted"
     session[:user_id] = nil
     redirect '/'
@@ -135,5 +145,3 @@ get '/post/:id' do
    @post = Post.find( params[:id] )
     erb :post
 end
-
-
