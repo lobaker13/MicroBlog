@@ -72,10 +72,10 @@ get'/post/:id/delete' do
   if @post.user_id != @current_user.id
     redirect '/'
   elsif @post.destroy
-    flash[:message] = "Deleted"
+    flash[:message] = "Post Deleted"
     redirect '/'
   else
-    flash[:message] = "Could Delete"
+    flash[:message] = "Could Not Delete"
   end
 end
 
