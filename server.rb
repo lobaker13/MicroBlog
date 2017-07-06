@@ -3,6 +3,7 @@ require 'sinatra/activerecord'
 require 'sinatra/flash'
 
 configure :development, :test do
+  require 'sqlite3'
   set :database, {adapter:"sqlite3", database: "db/super.db" }
 end
 #models.rb needs a database, place after db is defined
