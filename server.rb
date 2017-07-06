@@ -73,15 +73,28 @@ get '/logout' do
 end
 
  post '/signup' do
-  if params[:power] == nil
-    flash[:message] = "Super Power required to make account"
-  elsif User.find_by( username: params[:n_username] )
-    flash[:message] = "Username already taken"
-    redirect '/signup'
-  else
-    redirect '/'
+   @power = Power.find(params["power"])
+   pp @power
+  @user = User.new( first_name: params[:first_name],
+      last_name:params[:last_name],
+      email: params[:email],
+      username: params[:n_username],
+      password: params[:n_password],
+      power_id: params[:power])
+
+
+    if User.find_by( username: params[:n_username] )
+      flash[:message] = "Username already taken"
+      redirect '/signup'
+      else
+        @user.save
+        redirect '/'
+      end
+
+
   end
-end
+
+
 get '/post/:id' do
    @post = Post.find( params[:id] )
     erb :post
