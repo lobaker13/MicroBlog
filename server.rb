@@ -96,7 +96,7 @@ end
 # Changing the profile data
 post '/profile' do
   if @current_user.password == params[:password]
-    User.update(
+    @current_user.update(
       first_name: params[:first_name],
       last_name: params[:last_name]
       )
