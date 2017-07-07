@@ -93,6 +93,21 @@ get '/profile' do
       erb :profile
 end
 
+# Changing the profile data
+post '/profile' do
+  if @current_user.password == params[:password]
+    User.update(
+      first_name: params[:first_name],
+      last_name: params[:last_name]
+      )
+    flash[:message] = "Information updated successfully!"
+    redirect '/profile'
+  else
+    flash[:message] = "Please enter correct password to update info"
+    redirect '/profile'
+  end
+end
+
 get '/:username' do
   @user = User.find_by(username:params[:username])
     erb :user
