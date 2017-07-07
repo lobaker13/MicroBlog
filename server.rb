@@ -1,7 +1,10 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'sinatra/flash'
-set :database, {adapter:"sqlite3", database: "db/super.db" }
+require 'sqlite3'
+configure :development, :test do
+  set :database, {adapter:"sqlite3", database: "db/super.db" }
+end
 #models.rb needs a database, place after db is defined
 enable :sessions
 require './models'
@@ -81,12 +84,28 @@ get'/post/:id/delete' do
 end
 
 get '/profile' do
+
     unless @current_user
       flash[:message] = "Sign in to access your profile!"
       redirect '/login'
     end
       flash[:message] = "Welcome, #{@current_user.first_name}!"
       erb :profile
+end
+
+# Changing the profile data
+post '/profile' do
+  if @current_user.password == params[:password]
+    @current_user.update(
+      first_name: params[:first_name],
+      last_name: params[:last_name]
+      )
+    flash[:message] = "Information updated successfully!"
+    redirect '/profile'
+  else
+    flash[:message] = "Please enter correct password to update info"
+    redirect '/profile'
+  end
 end
 
 get '/:username' do
@@ -96,7 +115,13 @@ get '/:username' do
 
 get '/:id/destroy' do
   @user = User.find(params[:id])
-  if @user.destroy
+  User.transaction do
+    @user.posts.each{ |post| post.comments.destroy_all }
+    @user.posts.destroy_all
+    @user.comments.destroy_all
+    @user.destroy
+  end
+  if User.where( id: @user.id).empty?
     flash[:message] = "Profile deleted"
     session[:user_id] = nil
     redirect '/'
@@ -126,8 +151,6 @@ end
         @user.save
         redirect '/'
       end
-
-
   end
 
 
@@ -136,4 +159,23 @@ get '/post/:id' do
     erb :post
 end
 
+# Loading a new form for a comment
+get '/post/:id/comment/new' do
+  @post = Post.find(params[:id])
+  erb :new_comment
+end
 
+# Adding a comment to a post?......
+get '/post/:id/comment' do
+  @post = Post.find(params[:id])
+  if @post && Comment.create({
+       body: params[:body],
+       post_id: @post.id,
+       user_id: @current_user.id})
+       flash[:message] = "Thanks for adding your comment!"
+       redirect "/post/#{@post.id}/comment"
+  else
+       flash[:message] = "We were unable to add your comment"
+       redirect "/post/#{params[:id]}/comment/new"
+  end
+end

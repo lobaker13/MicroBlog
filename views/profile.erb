@@ -15,7 +15,7 @@
 		</tr>
     <tr>
       <td>Super Power</td>
-      <td><input name="power" value="<%= @current_user.power['description'] %>" ></td>
+      <td><input name="power" disabled="true" value="<%= @current_user.power['description'] %>" ></td>
     <tr>
 			<td>Email</td>
 			<td><input name="email" disabled="true" value="<%= @current_user.email %>"></td>
@@ -29,13 +29,13 @@
 		</tr>
 	</table>
   <div class="linkbutton">
-  <a href="">Post</a>	
+  <a href="/write">Create a Post</a>
   </div>
+  <!-- Link to users current posts, instead of writing current username in url -->
+  <!-- <div class="linkbutton">
+  <a href="= post.user_id ">My Current Posts</a>
+  </div> -->
   <div class="linkbutton">
-  		<a href="">Edit</a>
-  </div>
-  <div class="linkbutton">
-  		<a href="/<%= @current_user.id %>/destroy">Delete</a>
+  		<a href="/<%= @current_user.id %>/destroy">Delete Account</a>
   </div>
   </form>
-

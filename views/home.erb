@@ -3,8 +3,10 @@
 <div id="posts">
 <% @posts.each do |post| %>
   <h2>Title: <%= post.title %></h2>
-  <p><%= post.body %></p>
-  <h4><u>COMMENTS</u></h4>
+  <h3>by: <a href="/user/<%= post.user.id %>"><%= post.user.full_name %></a></h3>
+  <p>Post: <%= post.body %></p>
+  <!-- Adding a new comment link -->
+<a href="/post/<%= post.id %>/comment/new">New Comment</a>
   <% post.comments.each do |comment| %>
     <h4><%= comment.body %></h4>
     <% end %>

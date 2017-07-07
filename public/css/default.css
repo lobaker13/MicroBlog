@@ -43,6 +43,13 @@ div.message{
 	font-size: 30px;
 	color:#0027f5
 }
+/*New posts container*/
+div.new_post{
+	margin:auto;
+	width: 20%;
+
+}
+
 
 div.container a{
 	float: right;
@@ -115,6 +122,9 @@ img {
 /*	padding-left: 120px;*/
 	background-color: rgba(255, 0, 30, 0.7);
 }
+
+img.herofight {
+	width:100%;
 
 .linkbutton {
 	display: inline-block;
