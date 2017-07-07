@@ -3,7 +3,7 @@
 <div id="posts">
 <% @posts.each do |post| %>
   <h2>Title: <%= post.title %></h2>
-  <p><%= post.body %></p>
+  <p>Post:<%= post.body %></p>
   <h4><u>COMMENTS</u></h4>
   <% post.comments.each do |comment| %>
     <h4><%= comment.body %></h4>
