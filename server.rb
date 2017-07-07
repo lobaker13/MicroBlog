@@ -136,12 +136,31 @@ end
         @user.save
         redirect '/'
       end
-
-
   end
 
 
 get '/post/:id' do
    @post = Post.find( params[:id] )
     erb :post
+end
+
+# Loading a new form for a comment
+get '/post/:id/comment/new' do
+  @post = Post.find(params[:id])
+  erb :new_comment
+end
+
+# Adding a comment to a post?......
+get '/post/:id/comment' do
+  @post = Post.find(params[:id])
+  if @post && Comment.create({
+       body: params[:body],
+       post_id: @post.id,
+       user_id: @current_user.id})
+       flash[:message] = "Thanks for adding your comment!"
+       redirect "/post/#{@post.id}/comment"
+  else
+       flash[:message] = "We were unable to add your comment"
+       redirect "/post/#{params[:id]}/comment/new"
+  end
 end
