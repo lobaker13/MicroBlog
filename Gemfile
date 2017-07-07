@@ -12,5 +12,4 @@ end
 gem 'rake'
 gem 'rerun'
 
-#bundle install --without production
-#touch config.ru
+
