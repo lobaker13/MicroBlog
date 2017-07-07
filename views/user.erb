@@ -1,6 +1,8 @@
+<div id="posts">
 <h1><%= @user.full_name %>'s Posts</h1>
 	<ol>
 		<% @user.posts.each do |post| %>
 		<li><a href="/post/<%= post.id %>"><%= post.title %></a></li>
 		<% end %>
 	</ol>
+</div>
