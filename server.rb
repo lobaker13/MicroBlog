@@ -108,11 +108,6 @@ post '/profile' do
   end
 end
 
-get '/:username' do
-  @user = User.find_by(username:params[:username])
-    erb :user
-  end
-
 get '/:id/destroy' do
   @user = User.find(params[:id])
   User.transaction do
@@ -133,25 +128,25 @@ end
 
 
 
- post '/signup' do
-   @power = Power.find(params["power"])
-   pp @power
-  @user = User.new( first_name: params[:first_name],
-      last_name:params[:last_name],
-      email: params[:email],
-      username: params[:n_username],
-      password: params[:n_password],
-      power_id: params[:power])
+post '/signup' do
+ @power = Power.find(params["power"])
+ pp @power
+ @user = User.new( first_name: params[:first_name],
+    last_name:params[:last_name],
+    email: params[:email],
+    username: params[:n_username],
+    password: params[:n_password],
+    power_id: params[:power])
 
 
-    if User.find_by( username: params[:n_username] )
-      flash[:message] = "Username already taken"
-      redirect '/signup'
-      else
-        @user.save
-        redirect '/'
-      end
-  end
+  if User.find_by( username: params[:n_username] )
+    flash[:message] = "Username already taken"
+    redirect '/signup'
+    else
+      @user.save
+      redirect '/'
+    end
+end
 
 
 get '/post/:id' do
@@ -166,16 +161,22 @@ get '/post/:id/comment/new' do
 end
 
 # Adding a comment to a post?......
-get '/post/:id/comment' do
+post '/post/:id/comment' do
   @post = Post.find(params[:id])
   if @post && Comment.create({
        body: params[:body],
        post_id: @post.id,
        user_id: @current_user.id})
-       flash[:message] = "Thanks for adding your comment!"
-       redirect "/post/#{@post.id}/comment"
+       flash[:message] = "Comment added!"
+       redirect "/post/#{@post.id}"
   else
        flash[:message] = "We were unable to add your comment"
        redirect "/post/#{params[:id]}/comment/new"
   end
+end
+
+
+get '/:username' do
+  @user = User.find_by(username:params[:username])
+  erb :user
 end

@@ -32,9 +32,9 @@
   <a href="/write">Create a Post</a>
   </div>
   <!-- Link to users current posts, instead of writing current username in url -->
-  <!-- <div class="linkbutton">
-  <a href="= post.user_id ">My Current Posts</a>
-  </div> -->
+  <div class="linkbutton">
+  <a href="/<%= @current_user.username %>">My Current Posts</a>
+  </div>
   <div class="linkbutton">
   		<a href="/<%= @current_user.id %>/destroy">Delete Account</a>
   </div>
